@@ -1,63 +1,97 @@
-# BookBot: Character Frequency Analysis
+# BookBot: Text Analysis Tool
 
-BookBot is a Python program that analyzes an entire book and generates a detailed statistical report on the frequency of each character found in the text. It's designed to help you gain insights into the text by examining character usage.
+## Overview
 
-## Project Overview
+**BookBot** is a Python tool designed to analyze the content of a book or any text file. It provides a detailed statistical report on the number of words and the frequency of each character (case-insensitive) in the text. This project is suitable for anyone needing to quickly gain insights into the textual content of their documents.
 
-This project reads the content of a book, counts the number of words, and calculates the frequency of each alphabetic character (case-insensitive). The characters are then sorted alphabetically, and the report is printed in a clean, readable format.
+## Features
 
-### Features
+- Counts the total number of words in the text.
+- Calculates the frequency of each alphabetic character, ignoring case.
+- Generates a clear and sorted report of character frequencies.
+- Can be used as a standalone script or imported as a module for integration into other Python projects.
 
-- **Word Count**: Calculates the total number of words in the book.
-- **Character Frequency Analysis**: Counts how many times each alphabetic character appears in the text, regardless of case.
-- **Alphabetical Sorting**: The characters are listed in alphabetical order in the report.
-- **Simple and Clean Output**: The report is presented in a structured and easy-to-read format.
+## Installation
 
-## How to Use
+1. **Clone the Repository**:
 
-### Prerequisites
+   ```bash
+   git clone https://github.com/DarkSideDani/bookbot
+   cd bookbot
+   ```
 
-- Python 3.x installed on your system.
-- A text file of the book you want to analyze. The example included is **Frankenstein**.
+2. **Ensure Python is Installed**:
+   Make sure you have Python 3.x installed on your machine.
 
-### Setup
+## Usage
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/DarkSideDani/bookbot
-    cd bookbot
-    ```
+### As a Standalone Script
 
-2. **Place your text file**:
-   - Ensure the text file of the book is placed in the `books` directory within the project folder.
-   - The default example uses `frankenstein.txt`. To analyze a different book, replace this file or update the file path in the code.
+1. Save your text file (e.g., `frankenstein.txt`) in the `books` directory, or specify a path to your file.
 
-3. **Run the program**:
-    ```bash
-    python main.py
-    ```
+2. Run the script from the command line:
 
-### Example Output
+   ```bash
+   python book_analyzer.py books/frankenstein.txt
+   ```
 
-When you run the program, it generates a report similar to this:
+   Replace `books/frankenstein.txt` with the path to your text file.
+
+### As a Module
+
+You can import the functions into your own Python scripts for further use:
+
+```python
+from book_analyzer import get_num_words, get_num_chars
+
+text = "Your text here"
+print(get_num_words(text))
+print(get_num_chars(text))
+```
+
+## Functions
+
+### `get_book_text(path)`
+
+- **Description**: Reads the content of a book from the specified file path.
+- **Parameters**: `path` (str) - Path to the text file.
+- **Returns**: String containing the text from the file.
+
+### `get_num_words(text)`
+
+- **Description**: Counts the number of words in the given text.
+- **Parameters**: `text` (str) - Text to analyze.
+- **Returns**: Integer representing the number of words.
+
+### `get_num_chars(text)`
+
+- **Description**: Counts the occurrences of each alphabetic character in the given text (case-insensitive).
+- **Parameters**: `text` (str) - Text to analyze.
+- **Returns**: Dictionary with characters as keys and their frequencies as values.
+
+### `generate_report(book_path)`
+
+- **Description**: Generates and prints a statistical report of the text file located at `book_path`.
+- **Parameters**: `book_path` (str) - Path to the text file.
+
+### `main()`
+
+- **Description**: Handles command-line interface for the script. Parses arguments and generates the report.
+
+## Example Output
+
+When running the script with a sample text file, you might see:
 
 ```
 --- Begin report of books/frankenstein.txt ---
-74347 words found in the document
+1234 words found in the document
 
-The 'a' character was found: 4456 times
-The 'b' character was found: 1398 times
-The 'c' character was found: 2521 times
+The 'a' character was found: 5423 times
+The 'b' character was found: 2341 times
+The 'c' character was found: 1234 times
 ...
-The 'y' character was found: 2437 times
-The 'z' character was found: 249 times
 --- End Report ---
 ```
-
-### Customization
-
-- **Analyzing a Different Book**: To analyze a different book, change the `book_path` variable in the `main()` function to point to the desired text file.
-- **Output Formatting**: Modify the output format in the `main()` function to suit your preferences.
 
 
 ## Acknowledgments
