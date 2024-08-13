@@ -34,3 +34,7 @@ def get_num_chars(text):
     return char_count
 
 main()
+
+
+if __name__ == "__main__":
+    main()
