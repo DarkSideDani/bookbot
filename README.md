@@ -24,7 +24,7 @@ This project reads the content of a book, counts the number of words, and calcul
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/DarkSideDani/bookbot.git
+    git clone https://github.com/DarkSideDani/bookbot
     cd bookbot
     ```
 
