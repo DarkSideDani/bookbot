@@ -1,8 +1,22 @@
 import argparse
+import os
 
 def get_book_text(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        return f.read()
+    if not os.path.isfile(path):
+        raise FileNotFoundError(f"The file '{path}' does not exist.")
+    
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            text = f.read()
+            if not text.strip():
+                raise ValueError("The file is empty or only contains whitespace.")
+            return text
+    except FileNotFoundError:
+        raise FileNotFoundError(f"The file '{path}' was not found.")
+    except IOError as e:
+        raise IOError(f"An IO error occurred while trying to read the file '{path}': {e}")
+    except ValueError as ve:
+        raise ValueError(f"Error reading file: {ve}")
 
 def get_num_words(text):
     words = text.split()
@@ -10,28 +24,28 @@ def get_num_words(text):
 
 def get_num_chars(text):
     char_count = {}
-    
     for char in text:
         char = char.lower()
-        if char.isalpha():  # only count alphabetic characters
-            if char in char_count:
-                char_count[char] += 1
-            else:
-                char_count[char] = 1
+        if char.isalpha():  # Only count alphabetic characters
+            char_count[char] = char_count.get(char, 0) + 1
     return char_count
 
 def generate_report(book_path):
-    text = get_book_text(book_path)
-    num_words = get_num_words(text)
-    char_count = get_num_chars(text)
-    
-    print(f"--- Begin report of {book_path} ---")
-    print(f"{num_words} words found in the document\n")
-    
-    for char in sorted(char_count.keys()):  # Sort characters alphabetically
-        print(f"The '{char}' character was found: {char_count[char]} times")
+    try:
+        text = get_book_text(book_path)
+        num_words = get_num_words(text)
+        char_count = get_num_chars(text)
         
-    print("--- End Report ---")
+        print(f"--- Begin report of {book_path} ---")
+        print(f"{num_words} words found in the document\n")
+        
+        for char in sorted(char_count.keys()):  # Sort characters alphabetically
+            print(f"The '{char}' character was found: {char_count[char]} times")
+            
+        print("--- End Report ---")
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 def main():
     """Main function to handle command-line interface."""

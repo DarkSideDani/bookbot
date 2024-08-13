@@ -10,6 +10,7 @@
 - Calculates the frequency of each alphabetic character, ignoring case.
 - Generates a clear and sorted report of character frequencies.
 - Can be used as a standalone script or imported as a module for integration into other Python projects.
+- Includes error handling for common issues like missing or empty files.
 
 ## Installation
 
@@ -37,6 +38,27 @@
 
    Replace `books/frankenstein.txt` with the path to your text file.
 
+3. **Command-line Options**:
+   You can get help on how to use the script by running:
+
+   ```bash
+   python book_analyzer.py -h
+   ```
+
+   This will display the help message:
+
+   ```
+   usage: book_analyzer.py [-h] book_path
+   
+   Analyze a book and print a statistical report.
+   
+   positional arguments:
+     book_path  Path to the book file
+   
+   optional arguments:
+     -h, --help  show this help message and exit
+   ```
+
 ### As a Module
 
 You can import the functions into your own Python scripts for further use:
@@ -56,6 +78,7 @@ print(get_num_chars(text))
 - **Description**: Reads the content of a book from the specified file path.
 - **Parameters**: `path` (str) - Path to the text file.
 - **Returns**: String containing the text from the file.
+- **Error Handling**: Raises `FileNotFoundError` if the file does not exist or `ValueError` if the file is empty.
 
 ### `get_num_words(text)`
 
@@ -73,6 +96,7 @@ print(get_num_chars(text))
 
 - **Description**: Generates and prints a statistical report of the text file located at `book_path`.
 - **Parameters**: `book_path` (str) - Path to the text file.
+- **Error Handling**: Ensures the file is read correctly and outputs a report of the analysis.
 
 ### `main()`
 
@@ -92,7 +116,6 @@ The 'c' character was found: 1234 times
 ...
 --- End Report ---
 ```
-
 
 ## Acknowledgments
 
