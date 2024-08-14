@@ -1,5 +1,6 @@
 import argparse
 import os
+from collections import Counter
 
 def get_book_text(path):
     if not os.path.isfile(path):
@@ -23,12 +24,8 @@ def get_num_words(text):
     return len(words)
 
 def get_num_chars(text):
-    char_count = {}
-    for char in text:
-        char = char.lower()
-        if char.isalpha():  # Only count alphabetic characters
-            char_count[char] = char_count.get(char, 0) + 1
-    return char_count
+    text = text.lower()  # Convert text to lowercase for case insensitivity
+    return {char: count for char, count in Counter(text).items() if char.isalpha()}  # Only count alphabetic characters
 
 def generate_report(book_path):
     try:
