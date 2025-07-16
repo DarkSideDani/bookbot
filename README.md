@@ -1,3 +1,4 @@
+
 # 📚 BookBot - Character & Word Analyzer
 
 BookBot is a simple Python script that analyzes a given text file (like a book) to count the total number of words and the frequency of each alphabetical character (case-insensitive).
@@ -33,6 +34,58 @@ e: 44538
 t: 29493
 a: 25894
 ...
-
 ```
+
+---
+
+## 📦 How to Use
+
+### 1. Clone the Repository or Download the Files
+
+```bash
+git clone https://github.com/yourusername/bookbot.git
+cd bookbot
+```
+
+### 2. Add a Text File
+
+Place your `.txt` file inside the project folder (e.g. `books/frankenstein.txt`).
+
+### 3. Run the Script
+
+```bash
+python3 main.py books/frankenstein.txt
+```
+
+If you don't provide a file path, you'll see a usage message:
+
+```bash
+Usage: python3 main.py <path_to_book>
+```
+
+---
+
+## 📁 Project Structure
+
+```bash
+bookbot/
+│
+├── main.py             # Main program logic and CLI handling
+├── stats.py            # Word and character counting functions
+├── books/              # (optional) Folder to store your .txt files
+│   └── frankenstein.txt
+└── README.md           # This file
+```
+
+---
+
+## 📌 Requirements
+
+- Python 3.x
+- A plain `.txt` file to analyze
+
+---
+
+
+
 BookBot is my first [Boot.dev](https://www.boot.dev) project!
